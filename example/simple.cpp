@@ -6,8 +6,6 @@
 
 #include "simplemqttclient.h"
 
-
-
 int main(int argc, char *argv[])
 {
     int rc,val;
