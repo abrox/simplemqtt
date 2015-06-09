@@ -13,5 +13,19 @@ set_target_properties( smqtt simple
     RUNTIME_OUTPUT_DIRECTORY "${smqtt_SOURCE_DIR}/bin"
 )
 
-INSTALL(FILES ${smqtt_SOURCE_DIR}/lib/libsmqtt.so DESTINATION ${LIB_INSTALL_DIR})
+SET ( LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+SET ( HEADER_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include/smqtt")
+
+INSTALL(FILES
+           ${smqtt_SOURCE_DIR}/lib/libsmqtt.so
+        DESTINATION
+           ${LIB_INSTALL_DIR}
+       )
+
+INSTALL(FILES
+           ${smqtt_SOURCE_DIR}/src/mqttutils.h
+           ${smqtt_SOURCE_DIR}/src/simplemqttclient.h
+        DESTINATION
+           ${HEADER_INSTALL_DIR}
+       )
 
