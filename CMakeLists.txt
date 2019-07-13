@@ -1,33 +1,25 @@
 
-cmake_minimum_required (VERSION 2.8.11)
-project (smqtt)
+cmake_minimum_required (VERSION 3.9)
+project(smqtt VERSION 1.0.1 DESCRIPTION "Simle c++ wrapper for paho c interface")
 
 add_subdirectory (src)
 add_subdirectory (example)
 
 SET ( LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
-set_target_properties( smqtt simple
+set_target_properties( simple
     PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${smqtt_SOURCE_DIR}/lib"
     RUNTIME_OUTPUT_DIRECTORY "${smqtt_SOURCE_DIR}/bin"
 )
 
-SET ( LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib")
-SET ( HEADER_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include/smqtt")
+set_target_properties( smqtt
+    PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "${smqtt_SOURCE_DIR}/lib"
+)
+set_target_properties(smqtt PROPERTIES VERSION ${PROJECT_VERSION})
+set_target_properties(smqtt PROPERTIES SOVERSION 1)
 
-INSTALL(FILES
-           ${smqtt_SOURCE_DIR}/lib/libsmqtt.so
-        DESTINATION
-           ${LIB_INSTALL_DIR}
-       )
-
-INSTALL(FILES
-           ${smqtt_SOURCE_DIR}/src/mqttutils.h
-           ${smqtt_SOURCE_DIR}/src/simplemqttclient.h
-        DESTINATION
-           ${HEADER_INSTALL_DIR}
-       )
+include(GNUInstallDirs)
 
 # uninstall target
 configure_file(
